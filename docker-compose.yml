@@ -7,7 +7,9 @@ services:
     restart: unless-stopped
     ports:
       - "9091:9090"
-    # This magic command forces Prometheus to monitor your Raspberry Pi directly
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml # Mounts your config file
+      - prometheus_data:/prometheus
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
     extra_hosts:
@@ -38,4 +40,5 @@ services:
       - GLANCES_OPT=-w
 
 volumes:
+  prometheus_data:
   grafana_data:
