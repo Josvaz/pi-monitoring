@@ -1,0 +1,8 @@
+global:
+  scrape_interval: 15s # How often to poll your Pi for data
+
+scrape_configs:
+  - job_name: 'node-exporter'
+    static_configs:
+      - targets: ['host.docker.internal:9100'] # Points Prometheus out to your Pi's hardware
+
